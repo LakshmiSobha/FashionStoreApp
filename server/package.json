@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "name": "webserver",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "express": ">=4.1",
+    "nodejs-websocket": ">=1.5.0",
+    "cookie-parser": ">=1.4.1",
+    "mongodb": ">=2.1.9",
+    "mysql": ">=2.10.2",
+    "path": ">=0.12.7",
+    "axios": "^0.18.1",
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^7.4.3",
+    "jwt-decode": "^2.2.0",
+    "mysql2": "^1.6.5",
+    "nodemon": "^1.19.1",
+    "react-router-dom": "^4.3.1",
+    "sequelize": "^4.44.0"
+  },
+  "devDependencies": {}
+}

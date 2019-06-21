@@ -1,0 +1,67 @@
+#headerContainer, #homePageContainer, #dressContainer{
+    width:100%;
+}
+
+#headerRow{
+    background-color: rgb(202, 198, 206);
+}
+
+#offer{
+    text-align: center;
+}
+
+@keyframes example1 {      
+    from {font-size: 10px;}
+    to {font-size: 30px;}
+}
+
+#offerText {
+    animation-name: example1;
+    animation-duration: 10s;  
+    animation-iteration-count: infinite;
+}
+.navbar {
+    background-color: rgb(202, 198, 206); 
+}
+.search-container{
+    margin-top:0.2%;
+}
+.search-container button{
+    color:rgb(53, 53, 124);
+}
+#carouselImgs{
+    width:100%;
+}
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+   align-content: center
+
+}
+.grid-item {  
+    height: 300px;
+    width: 350px;  
+    border: 1px solid #ccc;
+    margin: 85px;
+}
+.grid-item:hover {
+    transform: scale(1.10); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+.desc {
+    padding-top: 15px;
+    text-align: center;
+    font-style: bold italic;
+    font-size: 25px;      
+}
+.SignInform{
+    width:500px;
+    margin:auto;
+    padding: 8%;
+    border:solid 1px;
+    border-color: rgb(202, 198, 206);
+}
+footer {
+    background-color: rgb(202, 198, 206);
+    padding-top: 1%;
+}
+

@@ -1,0 +1,57 @@
+/*body 
+{ background: #eee; }
+*/
+
+/*
+#aboutusContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+*/
+.banner {
+  position: relative;
+  left: 50%;
+  display: block;
+  margin: 100px -200px;
+  width: 400px;
+  height: 60px;
+  border: 1px solid #8a1;
+  margin-bottom: 3%;
+  text-align: center;
+  color: #451;
+  background: #9b2;  
+ /*background:  rgb(72, 97, 238); */
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0,0,0,.15) inset,
+      				0 6px 10px rgba(0,0,0,.15);
+}
+
+.banner::before,
+.banner::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: -50px;
+  top: 24px;
+  display: block;
+  width: 70px;
+  height: 0px;
+  border: 30px solid #9b2;
+  border-right: 20px solid #791;
+  border-bottom-color: #94b81e;
+ border-left-color: transparent;
+  transform: rotate(-5deg);
+}
+
+.banner::after {
+  left: auto;
+  right: -50px;
+  border-left: 20px solid #791;
+  border-right: 30px solid transparent;  
+  transform: rotate(5deg);
+}
+
+.shopping-bag {
+  text-align: center;
+}

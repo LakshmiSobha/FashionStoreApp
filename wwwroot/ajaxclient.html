@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rest-client</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            var servicesRoot="api/womenclothing";
+            
+            function makeTheCall(url,method,headers,data){
+                if (!method) method="GET";
+                var x=new XMLHttpRequest();
+                x.onreadystatechange=function(){
+                    if (x.readyState==4) showResponse(x);
+                }
+                x.open(method,url,true);
+                headers=headers || "";
+                var ha=headers.split("\n");
+                ha.forEach(function(h){
+                    var pair=h.split(":");
+                    if (pair.length!=2) return;
+                    x.setRequestHeader(pair[0].trim(),pair[1].trim());
+                });
+                x.send(data);
+            }
+
+            function showResponse(x)
+            {
+              var stat=x.status+" : "+x.statusText;  
+              document.getElementById("status").innerHTML=stat;
+              var head=x.getAllResponseHeaders();
+              document.getElementById("headers").innerHTML=head;
+              var text=x.responseText || "*NODATA*";
+              if (text.length==0) text="*NODATA*";
+              document.getElementById("response").value=text;
+              try{
+                  var obj=JSON.parse(text);
+                  var js="";
+                  for(var k in obj){
+                      js+=k+":"+obj[k]+"\n";
+                  }
+                  document.getElementById("json").innerHTML=js;
+              }
+              catch(er){
+                  document.getElementById("json").innerHTML="Not a JSON-object";
+              }
+            }
+
+            function pageLoaded(){
+                var loc=window.location.href;
+                if (loc.endsWith(".html")) {
+                    var ind=loc.lastIndexOf("/");
+                    loc=loc.substring(0,ind);
+                }
+                if (!loc.endsWith("/")) loc+="/";
+                loc+=servicesRoot+"/"
+                document.getElementById("url").value=loc;
+            }
+            
+            function methodSelected(method){
+                document.getElementById("status").innerHTML=" ";
+                document.getElementById("headers").innerHTML=" ";
+                document.getElementById("response").value=" ";
+                document.getElementById("json").innerHTML="";
+                var url=document.getElementById("url").value;
+                var data=document.getElementById("data").value;
+                var hdrs=document.getElementById("requestHeaders").value;
+                if ((method=="GET") || (method=="DELETE")) makeTheCall(url,method,hdrs);
+                else makeTheCall(url,method,hdrs,data);
+            }
+
+        </script>
+        <style>
+            .header {margin: 0px; padding:0px; font-size: 16px;font-weight: bold}
+        </style>
+    </head>
+    <body onload="pageLoaded()">
+        <div style="width: 900px; margin-left: auto; margin-right: auto">
+            <div style="border: 1px solid black; padding: 10px;">
+                <p class="header">Request URL</p>
+                <input id="url" style="width: 90%;"/>
+                <p class="header">Request headers</p>
+                <textarea id="requestHeaders" style="width:90%; height: 60px;">Accept:application/json&#13;&#10;Content-Type:application/json</textarea>
+                <p class="header">Request data</p>
+                <textarea id="data" style="width: 90%; height: 60px;"/></textarea><br />
+                <input type="button" id="get" value="GET" onclick="methodSelected('GET')" />
+                <input type="button" id="put" value="PUT" onclick="methodSelected('PUT')" />
+                <input type="button" id="post" value="POST" onclick="methodSelected('POST')" />
+                <input type="button" id="delete" value="DELETE" onclick="methodSelected('DELETE')" />
+            </div>
+            <div style="border: 1px solid black; padding: 10px;">
+                <p class="header">Response status</p>
+                <pre id="status"> </pre>
+                <p class="header">Response headers</p>
+                <pre id="headers"> </pre>
+                <p class="header">Response data</p>
+                <textarea id="response" style="width: 100%; height: 60px; border: none;"> </textarea>
+                <p class="header">JSON-object</p>
+                <pre id="json"> </pre>
+            </div>
+        </div>
+    </body>
+</html>
